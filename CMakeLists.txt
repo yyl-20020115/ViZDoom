@@ -31,7 +31,7 @@ set(CMAKE_MODULE_PATH
 
 # Set the release mode if not specified
 if(NOT CMAKE_BUILD_TYPE)
-    set(CMAKE_BUILD_TYPE Release)
+    set(CMAKE_BUILD_TYPE Debug)
 endif()
 
 
@@ -109,8 +109,10 @@ set(VIZDOOM_INCLUDE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/include)
 set(VIZDOOM_LIB_SRC_DIR ${VIZDOOM_SRC_DIR}/lib)
 set(VIZDOOM_LIB_INCLUDE_DIR ${VIZDOOM_INCLUDE_DIR} ${VIZDOOM_LIB_SRC_DIR})
 set(VIZDOOM_OUTPUT_NAME vizdoom)
-
-find_package(Boost 1.53 COMPONENTS filesystem thread system date_time chrono regex iostreams REQUIRED)
+find_package(Boost COMPONENTS iostreams thread chrono REQUIRED)
+message(STATUS "Boost_LIBRARY_DIRS:${Boost_LIBRARY_DIRS}")
+link_directories(${Boost_LIBRARY_DIRS})
+#find_package(Boost 1.53 COMPONENTS filesystem thread system date_time chrono regex iostreams REQUIRED)
 find_package(Threads REQUIRED)
 
 include_directories(${VIZDOOM_LIB_INCLUDE_DIR} ${Boost_INCLUDE_DIR})

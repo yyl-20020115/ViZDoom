@@ -92,7 +92,8 @@ if( WIN32 )
 		PATHS ENV DXSDK_DIR
 		PATH_SUFFIXES Include )
 	if( NOT D3D_INCLUDE_DIR )
-		message( SEND_ERROR "Could not find DirectX 9 header files" )
+		#message( SEND_ERROR "Could not find DirectX 9 header files" )
+		message( WARNING "Could not find DirectX 9 header files" )
 	else( NOT D3D_INCLUDE_DIR )
 		include_directories( ${D3D_INCLUDE_DIR} )
 	endif( NOT D3D_INCLUDE_DIR )
@@ -116,14 +117,15 @@ if( WIN32 )
 
 	set( DX_LIBS_FOUND YES )
 	if( NOT DX_dxguid_LIBRARY )
-		set( DX_LIBS_FOUND NO )
+		set( DX_dxguid_LIBRARY dxguid.lib )
 	endif( NOT DX_dxguid_LIBRARY )
 	if( NOT DX_dinput8_LIBRARY )
-		set( DX_LIBS_FOUND NO )
+		set( DX_dinput8_LIBRARY dinput8.lib )
 	endif( NOT DX_dinput8_LIBRARY )
 
-	if( NOT DX_LIBS_FOUND )
-		message( FATAL_ERROR "Could not find DirectX 9 libraries" )
+	if( NOT DX_LIBS_FOUND )	
+		#message( FATAL_ERROR "Could not find DirectX 9 libraries" )
+		message( WARNING "Could not find DirectX 9 libraries" )
 	endif( NOT DX_LIBS_FOUND )
 
 	set( ZDOOM_LIBS
@@ -388,7 +390,8 @@ endif( BACKPATCH )
 
 # Libraries ZDoom needs
 
-find_package(Boost COMPONENTS thread system date_time chrono REQUIRED)
+#find_package(Boost COMPONENTS thread system date_time chrono REQUIRED)
+find_package(Boost COMPONENTS chrono iostreams REQUIRED)
 
 message( STATUS "Fluid synth libs: ${FLUIDSYNTH_LIBRARIES}" )
 set( ZDOOM_LIBS ${ZDOOM_LIBS} "${ZLIB_LIBRARIES}" "${JPEG_LIBRARIES}" "${BZIP2_LIBRARIES}" "${GME_LIBRARIES}"  ${Boost_LIBRARIES} )

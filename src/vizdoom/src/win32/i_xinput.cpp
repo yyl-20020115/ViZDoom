@@ -1,3 +1,5 @@
+
+#undef NO_XINPUT
 #ifndef NO_XINPUT
 
 // HEADER FILES ------------------------------------------------------------
@@ -788,8 +790,10 @@ void I_StartupXInput()
 }
 
 #else	// NO_XINPUT
-
 #include "i_input.h"
+
+class FJoystickCollection;
+extern FJoystickCollection* JoyDevices[NUM_JOYDEVICES];
 
 void I_StartupXInput()
 {

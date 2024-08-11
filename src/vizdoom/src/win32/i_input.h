@@ -58,6 +58,7 @@ enum
 
 #ifdef USE_WINDOWS_DWORD
 #include "m_joy.h"
+#include <wtypes.h>
 
 // Don't make these definitions available to the main body of the source code.
 

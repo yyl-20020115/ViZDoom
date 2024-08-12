@@ -42,6 +42,7 @@
 #include <commctrl.h>
 #include <richedit.h>
 
+
 #ifdef _MSC_VER
 #pragma warning(disable:4244)
 #endif
@@ -1278,18 +1279,20 @@ int WINAPI WinMain (HINSTANCE hInstance, HINSTANCE nothing, LPSTR cmdline, int n
 	// Uncomment this line to make the Visual C++ CRT check the heap before
 	// every allocation and deallocation. This will be slow, but it can be a
 	// great help in finding problem areas.
-	//_CrtSetDbgFlag (_CRTDBG_ALLOC_MEM_DF | _CRTDBG_CHECK_ALWAYS_DF);
+	_CrtSetDbgFlag (_CRTDBG_ALLOC_MEM_DF | _CRTDBG_CHECK_ALWAYS_DF);
 
 	// Enable leak checking at exit.
 	_CrtSetDbgFlag (_CrtSetDbgFlag(0) | _CRTDBG_LEAK_CHECK_DF);
 
 	// Use this to break at a specific allocation number.
-	//_crtBreakAlloc = 77624;
+	//_crtBreakAlloc =1999;
 #endif
 
 	DoMain (hInstance);
 
 	CloseHandle (MainThread);
 	MainThread = INVALID_HANDLE_VALUE;
+	//_CrtDumpMemoryLeaks();
+
 	return 0;
 }

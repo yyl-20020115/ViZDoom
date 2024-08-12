@@ -120,10 +120,14 @@ extern FStartupInfo DoomStartupInfo;
 
 class FIWadManager
 {
+public:
+	FIWadManager();
+	~FIWadManager();
+
+private:
 	TArray<FIWADInfo> mIWads;
 	TArray<FString> mIWadNames;
 	TArray<int> mLumpsFound;
-
 	void ParseIWadInfo(const char *fn, const char *data, int datasize);
 	void ClearChecks();
 	void CheckLumpName(const char *name);

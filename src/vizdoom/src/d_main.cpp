@@ -2548,6 +2548,10 @@ void D_DoomMain (void)
 			iwad_man->ParseIWadInfos(basewad);
 		}
 		const FIWADInfo *iwad_info = iwad_man->FindIWAD(allwads, iwad, basewad);
+		if (iwad_info == nullptr) {
+			delete iwad_man;
+			return;
+		}
 		gameinfo.gametype = iwad_info->gametype;
 		gameinfo.flags = iwad_info->flags;
 		gameinfo.ConfigName = iwad_info->Configname;
